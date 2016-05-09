@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>规格列表</title>
+  <link rel="<?= $css_rel ?>" type="text/css" href="/static/common_css/table_align_center.<?= $css_type ?>">
+  <link rel="<?= $css_rel ?>" type="text/css" href="/application/views/goodsspec/index.<?= $css_type ?>">
+
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="hpanel">
+      <div class="panel-heading">
+        Filter
+      </div>
+      <div class="panel-body">
+        <form action="/GoodsSpec" method="get" class="form-horizontal ">
+
+          <?php include(VIEW_PATH.'common/select_category_4.html'); ?>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Attribute name</label>
+            <div class="col-md-2">
+              <input type="text" class="form-control" name="spec_name" value="<?= $spec_name ?>">
+            </div>
+            <label class="col-md-2 control-label">Attribute value</label>
+            <div class="col-md-2">
+              <input type="text" class="form-control" name="spec_value" value="<?= $spec_value ?>">
+            </div>
+            <div class="col-md-2 ">
+              <button class="btn btn-primary col-xs-offset-1" type="submit">Filter</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hpanel">
+          <div class="panel-heading">
+            Goods attribute list
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <!--Todo,Batch operation
+                <th><input type="checkbox"></th>
+                -->
+                <th>Attribute name</th>
+                <th>Input type</th>
+                <th>Display type</th>
+                <th>Attribute value</th>
+                <th>Show in search filter</th>
+                <th>Enable</th>
+                <th>Operation</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php if( !$spec_list ) :?>
+              <tr>
+                <td colspan="8" class="text-center">
+                  <h4>没有规格</h4>
+                </td>
+              </tr>
+              <?php endif; ?>
+
+              <?php foreach ($spec_list as $item): ?>
+              <tr>
+                <!--暂时不做批量操作
+                <th scope="row">
+                  <input type="checkbox">
+                </th>
+                -->
+                <td><?= $item['name'] ?></td>
+                <td>
+                  <?php
+                  switch ($item['input_type']){
+                    case 1:
+                    echo "select input";break;
+                    case 2:
+                    echo "radio input";break;
+                    case 3:
+                    echo "checkbox input";break;
+                    case 4:
+                    echo "text input";break;
+                    case 5:
+                    echo "double select input";break;
+				        	}?>
+                </td>
+                <td>
+                  <?php if( $item['show_type']==1 ) :?>
+                  text
+                  <?php else: ?>
+                  picture
+                  <?php endif; ?>
+                </td>
+                <td class="col-md-2">
+                  <?= $item['spec_value_show'] ?>
+                </td>
+                <td>
+                  <a href="/Category/goodsCategoryEdit">
+                    <i class="icon-ok">
+                    </i>
+                  </a>
+                </td>
+                <td>
+                  <a href="/Category/goodsCategoryEdit">
+                    <i class="icon-remove">
+                    </i>
+                  </a>
+                </td>
+                <td>
+                  <a href="/Category/goodsCategoryEdit">Edit</a>
+                  <a href="/Category/goodsCategoryEdit">Copy</a>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-right">
+      <?= $pagination ?>
+    </div>
+  </div>
+
+</div>
+</body>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

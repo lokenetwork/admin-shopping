@@ -1,0 +1,146 @@
+<?php
+  $controller = Yaf_Dispatcher::getInstance()->getRequest()->controller;
+
+
+
+  $action = Yaf_Dispatcher::getInstance()->getRequest()->action;
+
+?>
+
+<link rel="<?= $css_rel ?>" type="text/css" href="/application/views/common/left_nav.<?= $css_type ?>">
+
+<div id="left_nav" class="pull-left" style="">
+  <div class="avatar text-center">
+    <div id="avatar_img">
+      <!--<img src="/static/common_img/logo.png">-->
+      <img class="img-circle" src="/static/common_img/round_logo.png">
+    </div>
+    <div id="avatar_name">
+      loken
+    </div>
+  </div>
+
+  <div id="left_menu">
+    <ul class="nav" id="side-menu">
+      <li>
+        <a href="/" class=" <?php if ($controller=='Index'): ?>active_a<?php endif; ?>">
+          <span class="nav-label">Dashboard</span>
+          <span class="label label-success pull-right">v.1</span>
+        </a>
+      </li>
+
+      <!--
+      <li>
+        <a href="analytics.html"> <span class="nav-label">新功能</span><span class="label label-warning pull-right">NEW</span>
+        </a>
+      </li>
+      -->
+
+      <li class="">
+        <?php
+            if( $controller=='Goods' || $controller=='Goodsspec' || $controller=='Goodsmodel' ){
+              $goods_select = 1;
+            }else{
+              $goods_select = 0;
+            }
+        ?>
+        <a class="sec_menu_a <?php if ( $goods_select ): ?>active_a<?php endif; ?>"
+           href="javascript:void(0);" onclick="$.show_sub_menu(this);">
+          <span class="nav-label">Goods manage</span>
+          <i class="icon-angle-left pull-right sec_menu_i"></i>
+        </a>
+        <ul
+          class="nav nav-second-level <?php if ( !$goods_select ): ?>collapse<?php endif; ?>"
+          aria-expanded="false">
+          <li class="<?php if ($controller=='Goods' && $action=='index'): ?>active_li<?php endif; ?>">
+          <a href="/Goods">Goods list</a>
+          </li>
+
+          <li class="<?php if ($controller=='Goodsspec' && $action=='index'): ?>active_li<?php endif; ?>">
+          <a href="/GoodsSpec">
+              Goods attribute list
+            </a>
+          </li>
+          <li class="<?php if ($controller=='Goodsspec' && $action=='add'): ?>active_li<?php endif; ?>">
+            <a href="/GoodsSpec/add" >
+              Add goods attribute
+            </a>
+          </li>
+          <li class="<?php if ($controller=='Goodsmodel' && $action=='index'): ?>active_li<?php endif; ?>">
+            <a href="/GoodsModel">
+              Goods model list
+            </a>
+          </li>
+          <li class="<?php if ($controller=='Goodsmodel' && $action=='add'): ?>active_li<?php endif; ?>">
+            <a href="/GoodsModel/add">
+              Add goods model
+            </a>
+          </li>
+        </ul>
+
+        <a class="sec_menu_a <?php if ($controller=='Category'): ?>active_a<?php endif; ?>" href="javascript:void(0);" onclick="$.show_sub_menu(this);">
+          <span class="nav-label">Category manage</span>
+          <i class="icon-angle-left pull-right sec_menu_i"></i>
+        </a>
+        <ul class="nav nav-second-level <?php if ($controller!='Category'): ?>collapse<?php endif; ?> " aria-expanded="false">
+          <li class="<?php if ($controller=='Category' && $action=='index'): ?>active_li<?php endif; ?>">
+          <a href="/Category">Goods category list</a>
+          </li>
+          <li class="<?php if ($controller=='Category' && $action=='goodscategoryadd'): ?>active_li<?php endif; ?>">
+            <a href="/Category/goodsCategoryAdd">Add goods category</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  $.extend({
+    /*
+     *  显示隐藏二级菜单函数
+     *
+     * */
+
+    show_sub_menu:function(em){
+      var slide_time = 200;
+      //其他块恢复原来的样子
+      $(".nav-second-level").slideUp(slide_time);
+      $(".sec_menu_a").css('background','#f7f9fa');
+      $(".sec_menu_i").removeClass('icon-angle-down').addClass('icon-angle-left');
+
+      var _em = $(em);
+      var _em_icon = $(em).children('i');
+      var sec_em = $(em).next('.nav-second-level');
+      if( sec_em.css('display') == 'block' ){
+        _em.css('background','#f7f9fa');
+        _em_icon.removeClass('icon-angle-down').addClass('icon-angle-left');
+        sec_em.slideUp(slide_time);
+      }else{
+        _em.css('background','#fff');
+        _em_icon.removeClass('icon-angle-left').addClass('icon-angle-down');
+        sec_em.slideDown(slide_time);
+      };
+    },
+
+    show_left_menu:function(){
+      if( $("#left_nav").css('margin-left') == '-180px' ){
+        var margin_left = '0px';
+        $('#right_content').css('margin-left','180px');
+      }else{
+        var margin_left = '-180px';
+      }
+      $("#left_nav").animate({
+        marginLeft: margin_left,
+      }, 200,function(){
+        if( margin_left == '0px' ){
+        }else{
+          $('#right_content').css('margin-left','0px');
+        }
+      });
+    }
+
+  })
+</script>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title><?= $_title ?></title>
+  <link rel="<?= $css_rel ?>" type="text/css" href="/static/common_css/table_align_center.<?= $css_type ?>">
+  <link rel="<?= $css_rel ?>" type="text/css" href="/application/views/goodsspec/add.<?= $css_type ?>">
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12 .col-md-offset-3">
+        <div class="hpanel">
+
+          <div class="panel-heading">
+            <?= $_title ?>
+          </div>
+
+          <div class="panel-body">
+            <form action="/GoodsSpec/addPost" method="post" class="form-horizontal">
+
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Attribute name</label>
+                <div class="col-sm-3">
+                  <input type="text" required class="form-control" name="name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Input type</label>
+                <div class="col-sm-3">
+                  <select class="form-control m-b" name="input_type" id="input_type" onchange="change_input_type(this.value);">
+                      <option value="1">select input</option>
+                      <option value="2">radio input</option>
+                      <option value="3">checkbox input</option>
+                      <option value="4">text input</option>
+                      <option value="5">double select input</option>
+                  </select>
+                  <span class="help-block m-b-none">
+                    Picture is not usefull in select input and double select input.
+                    Double select input need special format
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group collapse" id="spec_name_2">
+                <label class="col-sm-2 control-label">规格名称2</label>
+                <div class="col-sm-3">
+                  <input type="text"  class="form-control" name="name2">
+                  <span class="help-block m-b-none">仅对联动菜单有效，用于联动二级的名称</span>
+                </div>
+              </div>
+
+              <?php include(VIEW_PATH.'common/select_category_4.html'); ?>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Display style</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <input type="radio" name="show_type" checked value="1"> Text
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="show_type" value="0" > Picture
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Attribute picture</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <input type="radio" name="have_picture"  value="1"> yes
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="have_picture"  value="0" checked > no
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Display in search filter</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <input type="radio" name="is_filter" checked  value="1"> yese
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="is_filter"  value="0" > no
+                  </label>
+                  <span class="help-block m-b-none">
+                    If yes,this attribute will display in search.
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group ">
+                <label class="col-sm-2 control-label">Unit</label>
+                <div class="col-sm-2">
+                  <input type="text"  class="form-control" name="unit">
+                  <span class="help-block m-b-none">
+                     Such as,%,Hz,M,V,Km
+                  </span>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Note</label>
+                <div class="col-sm-6">
+                  <textarea type="text"  class="form-control" name="note"></textarea>
+                  <!--
+                  <span class="help-block m-b-none">
+                    商家在录入商品的时候会显示在前台.
+                  </span>
+                  -->
+                </div>
+              </div>
+
+              <div class="form-group" id="spec_value_form_group">
+                <label class="col-sm-2 control-label">Attribute value</label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <button type="button" class="btn btn-info" onclick="add_spec_value()">Add value</button>
+                    </div>
+                  </div>
+                  <table class="table table-bordered top_offset_1 text-center">
+                    <thead>
+                    <tr >
+                      <th class="text-center">Vlaue</th>
+                      <th class="text-center">Display in seaerch</th>
+                      <th class="text-center">Operation</th>
+                    </tr>
+                    </thead>
+                    <tbody class="">
+                    <tr class="spec_value_tr">
+                      <td>
+                        <input type="text" required class="form-control" name="spec_value[]" >
+                      </td>
+                      <td>
+                        <select class="form-control m-b"  name="is_show[]">
+                          <option value="1">Yes</option>
+                          <option value="0">No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <div class="row spec_val_btn">
+                          <div class="col-sm-4 text-center">
+                            <a href="javascript:void(0)" onclick="self_up(this)">
+                              <i class="icon-arrow-up" ></i>
+                            </a>
+                          </div>
+                          <div class="col-sm-4 text-center">
+                            <a href="javascript:void(0)" onclick="self_down(this)">
+                            <i class="icon-arrow-down"></i>
+                            </a>
+                          </div>
+                          <div class="col-sm-4 text-center">
+                            <a href="javascript:void(0)" onclick="self_remove(this)">
+                            <i class="icon-remove"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <button class="btn btn-default " type="button" onclick="history.go(-1);">Cancel</button>
+                  <button class="btn btn-primary col-xs-offset-1" type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+
+</script>
+<script src="/application/views/goodsspec/add.js"></script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

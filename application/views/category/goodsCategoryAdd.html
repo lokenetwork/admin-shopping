@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>添加商品分类</title>
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12 .col-md-offset-3">
+        <div class="hpanel">
+
+          <div class="panel-heading">
+            <!--右边按钮,暂时不用
+            <div class="panel-tools">
+              <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+              <a class="closebox"><i class="fa fa-times"></i></a>
+            </div>
+            -->
+            Add goods category
+          </div>
+
+          <div class="panel-body">
+
+            <form action="/Category/goodsCategoryAddPost" method="post" class="form-horizontal">
+              <?php include(VIEW_PATH.'common/select_category_3.html'); ?>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Category name</label>
+                <div class="col-sm-4">
+                  <input type="text" required class="form-control" name="cat_name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Category sort</label>
+                <div class="col-sm-2">
+                  <input type="number" placeholder="Please input number" class="form-control" name="sort_order">
+                  <span class="help-block m-b-none">number larger,more top</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Keywords</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="aliases_name">
+                  <span class="help-block m-b-none">use for search,more manageble</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Show in app home page</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <input type="radio" name="app_index_display" id="inlineRadio1" value="1"> Yes
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="app_index_display" id="inlineRadio2" value="0" checked> No
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Goods model</label>
+                <div class="col-sm-2">
+                  <select class="form-control m-b">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <button class="btn btn-default " type="button" onclick="history.go(-1);">Cancel</button>
+                  <button class="btn btn-primary col-xs-offset-1" type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+</script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+
