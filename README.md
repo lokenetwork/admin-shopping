@@ -8,8 +8,13 @@ I write the all code by myself.
 
 These are some pictures of this project
 
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/admin-login.png)
+
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-list.png)
 
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/add-goods-attribute.png)
+
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-attribute-list.png)
 
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/add-goods-model-1.png)
 
@@ -17,15 +22,7 @@ These are some pictures of this project
 
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/add-system-goods-category.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/admin-login.png)
-
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-attribute-list.png)
-
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-list.png)
-
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/system-goods-category-list.png)
-
-
 
 # The whole shopping system code link
 
