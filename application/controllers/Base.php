@@ -12,8 +12,7 @@ class BaseController extends Yaf_Controller_Abstract {
 
 
   public function init(){
-    //todo,need delete
-    $_SESSION['admin_id'] = 1;
+
 
     $this->getView()->assign("css_rel", CSS_REL);
     $this->getView()->assign("css_type", CSS_TYPE);
