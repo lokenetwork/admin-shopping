@@ -1,12 +1,6 @@
-# admin-shopping
+# 买买提总后台
 
-administrator for shopping system.It can manage many things.
-
-The project is not finished,Because I have not time.I need to find a job now.
-
-I write the all code by myself.
-
-These are some pictures of this project
+采用YAF开发
 
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/login.png)
 
