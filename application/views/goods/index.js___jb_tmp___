@@ -1,0 +1,18 @@
+/**
+ * Created by loken_mac on 1/27/16.
+ */
+
+$(function($) {
+
+});
+
+function confirmLock(shop_id){
+	if(confirm("是否确认锁定商品?")){
+		window.location="/Goods/lock?id="+shop_id;
+	}
+}
+function confirmUnlock(shop_id){
+	if(confirm("是否确认解锁商品?")){
+		window.location="/Goods/unlock?id="+shop_id;
+	}
+}

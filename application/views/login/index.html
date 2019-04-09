@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <title>后台用户登录</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <link rel="<?= $css_rel ?>" type="text/css" href="/application/views/login/index.<?= $css_type ?>" >
+</head>
+<body class="blank">
+  <?php include(VIEW_PATH.'common/head_line.html'); ?>
+  <div class="container login-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center panel-group">
+          <h3><?= $company_name ?>管理系统</h3>
+          <small>全球最大o2o服装平台</small>
+        </div>
+        <div class="panel">
+          <div class="panel-body">
+            <form action="" id="loginForm" method="post" onsubmit="return false;" >
+              <div class="form-group">
+                <label class="control-label" for="account">账号</label>
+                <input
+                       type="text" name="account" id="account" class="form-control" placeholder="请输入您的手机/邮箱/用户名">
+                <span id="account_help" class="small"> </span>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="password">密码</label>
+                <input
+                  type="password" id="password" name="password" class="form-control" placeholder="请输入您的密码">
+                <span id="password_help" class=" small"> </span>
+
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="keep_login" type="checkbox" value="1"> 7天免登陆
+                </label>
+                <p class="help-block small">(非私人电脑不要勾选此项)</p>
+              </div>
+              <button id="loginSubmitButton" class="btn btn-success btn-block" onclick="$.Login.Post()" data-loading-text="登陆中..."   >登陆</button>
+              <!--
+              <a class="btn btn-default btn-block" href="#">Register</a>
+              -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php include(VIEW_PATH.'common/bottom.html'); ?>
+</body>
+<script src="/application/views/login/index.js"></script>
+<script>
+</script>
+</html>

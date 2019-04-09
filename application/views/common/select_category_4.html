@@ -1,0 +1,46 @@
+<input type="hidden" name="cat_id" id="cat_id"
+       value="<?php if (isset($cat_id)): ?><?= $cat_id ?><?php else: ?>0<?php endif; ?>">
+<div class="form-group">
+  <label class="col-sm-2 control-label">适用分类</label>
+  <div class="col-sm-2">
+    <select id="category_level_0" class="form-control m-b" onchange="selectCate(this,0)" name="category_level_0"  >
+      <option value="0">--请选择--</option>
+    </select>
+  </div>
+  <div class="col-sm-2">
+    <select id="category_level_1" name="category_level_1" class="form-control m-b collapse" onchange="selectCate(this,1)" >
+
+    </select>
+  </div>
+  <div class="col-sm-2">
+    <select id="category_level_2" name="category_level_2" class="form-control m-b collapse" onchange="selectCate(this,2)" >
+
+    </select>
+  </div>
+  <div class="col-sm-2">
+    <select id="category_level_3" name="category_level_3" class="form-control m-b collapse" onchange="selectCate(this,3)">
+    </select>
+  </div>
+</div>
+
+<?php
+  if(!isset($_GET["category_level_0"])){
+    $_GET["category_level_0"] = 0;
+  }
+  if(!isset($_GET["category_level_1"])){
+    $_GET["category_level_1"] = 0;
+  }
+  if(!isset($_GET["category_level_2"])){
+    $_GET["category_level_2"] = 0;
+  }
+  if(!isset($_GET["category_level_3"])){
+    $_GET["category_level_3"] = 0;
+  }
+?>
+<script>
+  var category_level_0 = <?= $_GET["category_level_0"] ?>;
+  var category_level_1 = <?= $_GET["category_level_1"] ?>;
+  var category_level_2 = <?= $_GET["category_level_2"] ?>;
+  var category_level_3 = <?= $_GET["category_level_3"] ?>;
+</script>
+<script src="/application/views/common/select_category_4.js"></script>

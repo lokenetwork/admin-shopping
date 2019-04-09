@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title><?= $company_name ?></title>
+      <link rel="stylesheet" type="text/css" href="/static/font_awesome/css/font-awesome.min.css">
+      <link rel="<?= $css_rel ?>" type="text/css" href="/application/views/index/index.<?= $css_type ?>">
+</head>
+<style>
+
+</style>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+<div id="right_content" class="container-fluid">
+      <div class="content">
+            <div class="row">
+                  <div class="col-md-12 .col-md-offset-3">
+                        <div class="hpanel">
+
+                              <div class="panel-heading">
+                                    <?= $_title ?>
+                              </div>
+
+                              <div class="panel-body">
+
+                                    <form action="/" method="get" class="form-horizontal">
+
+                                          <div class="form-group row">
+                                                <label class="col-md-1 control-label">时间段:</label>
+                                                <div class="col-md-4">
+                                                      <table class=" pull-left text-center">
+                                                            <tr>
+                                                                  <td>
+                                                                        <input type="date" class="form-control "
+                                                                               name="start_time"
+                                                                               value="<?= $start_time ?>">
+                                                                  </td>
+                                                                  <td class="col-md-1">
+                                                                        至
+                                                                  </td>
+                                                                  <td>
+                                                                        <input type="date" class="form-control "
+                                                                               name="end_time" value="<?= $end_time ?>">
+                                                                  </td>
+                                                            </tr>
+                                                            <!--
+                                                            <div class="pull-left text-center" style="line-height:34px;">
+                                                              至
+                                                            </div>
+                                                            -->
+                                                      </table>
+                                                </div>
+                                                <label class="col-md-2 control-label">粒度:</label>
+                                                <div class="col-md-3">
+                                                      <label class="radio-inline">
+                                                            <input type="radio" name="type"
+                                                                   value="month" <?php if( 'month' == $type ):?>
+                                                            checked<?php endif;?> > 月
+                                                      </label>
+                                                      <label class="radio-inline">
+                                                            <input type="radio" name="type"
+                                                                   value="day" <?php if( 'day' == $type ):?>
+                                                            checked<?php endif;?>> 天
+                                                      </label>
+                                                    <!--  <label class="radio-inline">
+                                                            <input type="radio" name="type"
+                                                                   value="hour" <?php if( 'hour' == $type ):?>
+                                                            checked<?php endif;?>> 小时
+                                                      </label>-->
+                                                </div>
+                                                <div class="col-md-1">
+                                                      <button type="submit" class="btn btn-primary">确定</button>
+                                                </div>
+                                          </div>
+                                    </form>
+
+                                    <div class="demo-container">
+                                          <div id="placeholder" class="demo-placeholder"></div>
+                                    </div>
+
+                                    <p>
+                                          <span id="hoverdata"></span>
+                                          <span id="clickdata"></span>
+                                    </p>
+
+
+                              </div>
+
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div>
+</body>
+
+<!--[if lte IE 8]>
+<script language="javascript" type="text/javascript" src="/static/flot/excanvas.min.js"></script><![endif]-->
+<script language="javascript" type="text/javascript" src="/static/flot/jquery.flot.js"></script>
+<script language="javascript" type="text/javascript" src="/static/flot/jquery.flot.time.js"></script>
+<script src="/application/views/index/index.js"></script>
+<script type="text/javascript">
+
+	var start_time = parseInt('<?= $start_timestamp ?>');
+	var end_time = parseInt('<?= $end_timestamp ?>');
+	var type = '<?= $type ?>';
+	var chat_data = JSON.parse('<?= $chat_data ?>');
+	console.log(chat_data);
+
+</script>
+<script src="/application/views/index/index.js"></script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

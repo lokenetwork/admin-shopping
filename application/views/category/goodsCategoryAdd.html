@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>添加商品分类</title>
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12 .col-md-offset-3">
+        <div class="hpanel">
+
+          <div class="panel-heading">
+            <!--右边按钮,暂时不用
+            <div class="panel-tools">
+              <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+              <a class="closebox"><i class="fa fa-times"></i></a>
+            </div>
+            -->
+            添加商品分类
+          </div>
+
+          <div class="panel-body">
+
+            <form action="/Category/goodsCategoryAddPost" method="post" class="form-horizontal">
+              <?php include(VIEW_PATH.'common/select_category_3.html'); ?>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">分类名称</label>
+                <div class="col-sm-4">
+                  <input type="text" required class="form-control" name="cat_name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">分类排序</label>
+                <div class="col-sm-2">
+                  <input type="number" placeholder="请输入数字" class="form-control" name="sort_order">
+                  <span class="help-block m-b-none">数字越大排的越前</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">关键字</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="aliases_name">
+                  <span class="help-block m-b-none">用于添加商品的时候分类搜索,多个关键词请用英文逗号","分隔</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">APP首页显示</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <input type="radio" name="app_index_display" id="inlineRadio1" value="1"> 是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="app_index_display" id="inlineRadio2" value="0" checked> 否
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">对应商品模型</label>
+                <div class="col-sm-2">
+                  <select class="form-control m-b">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <button class="btn btn-default " type="button" onclick="history.go(-1);">取消</button>
+                  <button class="btn btn-primary col-xs-offset-1" type="submit">确定</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+</script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

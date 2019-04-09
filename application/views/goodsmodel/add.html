@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title> <?= $_title ?></title>
+  <link rel="<?= $css_rel ?>" type="text/css" href="/static/common_css/table_align_center.<?= $css_type ?>">
+  <link rel="<?= $css_rel ?>" type="text/css" href="/application/views/goodsspec/add.<?= $css_type ?>">
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12 .col-md-offset-3">
+        <div class="hpanel">
+          <div class="panel-heading">
+            <?= $_title ?>
+          </div>
+          <div class="panel-body">
+            <form id="goodsModalForm" action="/GoodsModel/addPost" method="post" class="form-horizontal" onsubmit="return ($.CheckGoodsModalFrom.CheckAll())">
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">模型名称</label>
+                <div class="col-sm-3">
+                  <input type="text" required class="form-control" name="name">
+                </div>
+              </div>
+
+              <?php include(VIEW_PATH.'common/select_category_4.html'); ?>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">绑定分类</label>
+                <div class="col-sm-10">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="bind_category" value="1"> 绑定
+                  </label>
+                  <span class="help-block m-b-none">
+                    绑定到适用分类对应的分类（注意：绑定时会替换原有的设置）
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-6">
+                  <textarea type="text"  class="form-control" name="note"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group" id="spec_value_form_group">
+                <label class="col-sm-2 control-label">模型属性</label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <button type="button" class="btn btn-info" onclick="add_spec()">添加模型属性</button>
+                    </div>
+                  </div>
+                  <table class="table table-bordered top_offset_1 text-center">
+                    <thead>
+                    <tr >
+                      <th class="text-center">#</th>
+                      <th class="text-center">商品规格名称</th>
+                      <th class="text-center">属性/规格</th>
+                      <th class="text-center">分类过滤</th>
+                      <th class="text-center">必须填写</th>
+                      <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="spec_tbody" class="">
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <button class="btn btn-default " type="button" onclick="history.go(-1);">取消</button>
+                  <button class="btn btn-primary col-xs-offset-1" type="submit">确定</button>
+                </div>
+              </div>
+            </form>
+
+            <!--空白值 start-->
+            <table class="table table-bordered top_offset_1 text-center collapse">
+              <tr id="spec_tr_blank" >
+                <td class="spec_index_td">
+                  <div class="spec_index_div" spec_index="" onclick="search_spec_modal(this)">
+                    <input type="hidden" class="spec_index_attr_id" hidden_required="1" required_tips="请选择商品规格" name="attr[id][]" value="">
+                    <input type="hidden" class="spec_index_attr_name" name="attr[name][]" value="">
+                    <input type="hidden" class="spec_index_attr_admin_title" name="attr[admin_title][]" value="">
+                    <button type="button"
+                            class="btn btn-primary btn-sm">选择规格</button>
+                  </div>
+                </td>
+                <td class="display_spec_name">
+                </td>
+                <td>
+                  <select class="form-control m-b"  name="attr[is_attr][]">
+                    <option value="1">属性</option>
+                    <option value="0">规格</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control m-b"  name="attr[is_hide][]">
+                    <option value="1">过滤</option>
+                    <option value="0">不过滤</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control m-b"  name="attr[is_required][]">
+                    <option value="1">必填</option>
+                    <option value="0">选填</option>
+                  </select>
+                </td>
+                <td>
+                  <div class="row spec_val_btn">
+                    <div class="col-sm-4 text-center">
+                      <a href="javascript:void(0)" onclick="self_up(this)">
+                        <i class="icon-arrow-up" ></i>
+                      </a>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <a href="javascript:void(0)" onclick="self_down(this)">
+                        <i class="icon-arrow-down"></i>
+                      </a>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                      <a href="javascript:void(0)" onclick="self_remove(this)">
+                        <i class="icon-remove"></i>
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <!--空白值 end-->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+</script>
+<?php include(VIEW_PATH.'common/spec_search_modal.html'); ?>
+</body>
+<script>
+
+
+  //search_spec_modal();
+</script>
+<script src="/application/views/goodsmodel/add.js"></script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

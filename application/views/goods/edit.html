@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="Expires" CONTENT="0">
+
+  <meta http-equiv="Cache-Control" CONTENT="no-cache">
+
+  <meta http-equiv="Pragma" CONTENT="no-cache">
+  <title> <?= $_title ?></title>
+  <link rel="<?= $css_rel ?>" type="text/css" href="/static/common_css/common.<?= $css_type ?>">
+  <link rel="<?= $css_rel ?>" type="text/css" href="/application/views/goods/edit.<?= $css_type ?>">
+  <style>
+  </style>
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12 .col-md-offset-3">
+        <div class="hpanel">
+          <div class="panel-heading">
+            <?= $_title ?>
+          </div>
+          <div class="panel-body">
+
+            <form id="goodsModalForm" action="/Goods/addPost?goods_attr_oo=1" method="post" class="form-horizontal" onsubmit="return ($.CheckGoodsModalFrom.CheckAll())">
+              <input type="hidden" name="category_id" value="<?= $category_id ?>" >
+              <div class="form-group">
+                <label class="col-sm-2 control-label ">商品分类</label>
+                <div class="col-sm-10 control-label">
+                  <div class="row text-left">
+                    <div class="col-sm-12">
+                      <?= $goods_info['c_name'] ?>
+                      <!--
+                      <a href="http://baidu.com" class="col-xs-offset-1" onClick="return confirm('确定要修改分类吗?');" >修改商品分类</a>
+                      -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">商品名称</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" value="<?= $goods_info[''] ?>" name="goods_name" required  placeholder="请输入商品名称">
+                </div>
+              </div>
+
+              <div class="form-group" id="spec_value_form_group">
+                <label class="col-sm-2 control-label">商品规格信息</label>
+                <div class="col-sm-10">
+
+                  <table class="table table-bordered top_offset_1 text-center table-hover">
+                    <thead>
+                    <tr>
+                      <th class="text-center">尺码</th>
+                      <th class="text-center">颜色</th>
+
+                      <th class="text-center">价格(<span class="text-info">¥</span>)</th>
+                      <th class="text-center">重量(<span class="text-info">KG</span>)</th>
+                      <th class="text-center">库存</th>
+                      <th class="text-center">商品编码</th>
+                      <th class="text-center">规格图片</th>
+                    </tr>
+                    </thead>
+                    <tbody id="spec_tbody" class="">
+                    <tr id="special_attribute_select_tips" style="display: none;">
+                      <td colspan="7">
+                        请选择尺码+颜色
+                      </td>
+                    </tr>
+                    <tr class="hybird_spec_row">
+                      <td>XL</td>
+                      <td>天蓝色</td>
+                      <td><input type="number" name="goods_sku[尺码:XL+颜色:天蓝色][goods_sku_price]" class="form-control"
+                                 placeholder="请输入商品价格"></td>
+                      <td><input type="text" name="goods_sku[尺码:XL+颜色:天蓝色][goods_sku_weight]" class="form-control"
+                                 placeholder="请输入商品重量"></td>
+                      <td><input type="text" name="goods_sku[尺码:XL+颜色:天蓝色][goods_sku_store]" class="form-control"
+                                 placeholder="请输入商品库存"></td>
+                      <td><input type="text" name="goods_sku[尺码:XL+颜色:天蓝色][sku_commodity_code]" class="form-control"
+                                 placeholder="请输入商品编码"></td>
+                      <td>
+                        <button class="btn btn-default " name="goods_sku[尺码:XL+颜色:天蓝色][goods_sku_img]" type="button">
+                          选择图片
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="hybird_spec_row">
+                      <td>XL</td>
+                      <td>藏蓝色</td>
+                      <td><input type="number" name="goods_sku[尺码:XL+颜色:藏蓝色][goods_sku_price]" class="form-control"
+                                 placeholder="请输入商品价格"></td>
+                      <td><input type="text" name="goods_sku[尺码:XL+颜色:藏蓝色][goods_sku_weight]" class="form-control"
+                                 placeholder="请输入商品重量"></td>
+                      <td><input type="text" name="goods_sku[尺码:XL+颜色:藏蓝色][goods_sku_store]" class="form-control"
+                                 placeholder="请输入商品库存"></td>
+                      <td><input type="text" name="goods_sku[尺码:XL+颜色:藏蓝色][sku_commodity_code]" class="form-control"
+                                 placeholder="请输入商品编码"></td>
+                      <td>
+                        <button class="btn btn-default " name="goods_sku[尺码:XL+颜色:藏蓝色][goods_sku_img]" type="button">
+                          选择图片
+                        </button>
+                      </td>
+                    </tr>
+
+
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+              <div id="blank_special_attribute_html" class="hidden">
+                <td>
+                  <input type="number" class="form-control" placeholder="请输入商品价格">
+                </td>
+                <td>
+                  <input type="text" class="form-control" placeholder="请输入商品重量">
+                </td>
+                <td>
+                  <input type="text" class="form-control" placeholder="请输入商品库存">
+                </td>
+                <td>
+                  <input type="text" class="form-control" placeholder="请输入商品编码">
+                </td>
+                <td>
+                  <button class="btn btn-default " type="button">选择图片454</button>
+                </td>
+              </div>
+
+
+
+
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">商品主图</label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <button class="btn btn-default " type="button" >选择图片</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="help-block">
+                      </div>
+                      <div class="fileupload-preview thumbnail ">
+                        <img src="http://test.vengood.com/resource/attachment/images/2016/01/dZc7H7Vd7FSfeQrKQff777ahSQCA8a.png">
+                      </div>
+                      <span class="help-block">商品图片尺寸建议 800*800</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">商品图片</label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <span class="btn btn-primary"><i class="fa fa-plus"></i> 上传照片</span>
+                    </div>
+                  </div>
+                  <hr style="border-color:#fff;" />
+                  <div class="row can_remove_list">
+                    <?php for ($i = 1; $i <= 10; $i++): ?>
+                    <div class="col-sm-2">
+                      <i class="fa fa-times-circle _fa_times pull-right btn btn-danger " title="删除图片">
+                      </i>
+                      <div class="thumbnail">
+                        <img
+                          src="http://test.vengood.com/resource/attachment/images/2016/01/dZc7H7Vd7FSfeQrKQff777ahSQCA8a.png">
+                      </div>
+                    </div>
+                    <?php endfor; ?>
+                  </div>
+                </div>
+              </div>
+
+              <!--todo,显示一个iframe-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label">商品介绍</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" value="<?= $goods_info[''] ?>" name="goods_name" required  placeholder="请输入商品介绍">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">商品上架</label>
+                <div class="col-sm-5">
+                  <label class="radio-inline">
+                    <input type="radio" name="is_on_sale"  value="1" checked> 是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="is_on_sale"  value="0"> 否
+                  </label>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <button class="btn btn-default btn-lg" type="button" onclick="history.go(-1);">取消</button>
+                  <button class="btn btn-primary col-xs-offset-1 btn-lg" type="submit">确定添加商品</button>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+<script>
+
+</script>
+<script src="/application/views/goods/edit.js"></script>
+<script>
+
+</script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

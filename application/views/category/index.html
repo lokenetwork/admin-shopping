@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>分类列表</title>
+
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="hpanel">
+      <div class="panel-heading">
+        搜索过滤
+      </div>
+      <div class="panel-body">
+        <form action="/Category" method="get" class="form-horizontal">
+          <?php include(VIEW_PATH.'common/select_category_3.html'); ?>
+          <div class="form-group">
+            <label class="col-md-2 control-label">分类名称</label>
+            <div class="col-md-2">
+              <input type="text" class="form-control" name="cat_name" value="<?= $category_name ?>">
+            </div>
+            <div class="col-md-2 ">
+              <button class="btn btn-primary col-xs-offset-1" type="submit">确定</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hpanel">
+          <div class="panel-heading">
+            商品分类列表
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>分类ID</th>
+                <th>分类名称</th>
+                <th>绑定模型</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php if( !$category_list ) :?>
+              <tr>
+                <td colspan="4" class="text-center">
+                  <h4>没有分类</h4>
+                </td>
+              </tr>
+              <?php endif; ?>
+
+              <?php foreach ($category_list as $item): ?>
+              <tr>
+                <th scope="row"><?= $item['cat_id'] ?></th>
+                <td><?= $item['cat_name'] ?></td>
+                <td>
+                  <?php if($item['name']): ?>
+                    <?= $item['name'] ?>
+                  <?php else : ?>
+                    无
+                  <?php endif; ?>
+
+                </td>
+                <td><a href="/Category/goodsCategoryEdit">编辑</a></td>
+              </tr>
+              <?php endforeach; ?>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-right">
+      <?= $pagination ?>
+    </div>
+  </div>
+
+</div>
+</body>
+<script type="text/javascript" src="/static/common_js/select_category_3.js" ></script>
+<script src="/application/views/index/index.js"></script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

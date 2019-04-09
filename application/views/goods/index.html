@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title><?= $_title ?></title>
+  <link rel="<?= $css_rel ?>" type="text/css" href="/static/common_css/table_align_center.<?= $css_type ?>">
+</head>
+<body class="blank">
+<?php include(VIEW_PATH.'common/top_common_include.html'); ?>
+
+<div id="right_content" class="container-fluid">
+  <div class="content">
+    <div class="hpanel">
+      <div class="panel-heading">
+        搜索过滤
+      </div>
+      <div class="panel-body">
+        <form action="/Goods" method="get" class="form-horizontal ">
+
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">商品名称</label>
+            <div class="col-md-2">
+              <input type="text" class="form-control" name="goods_name" value="<?= $goods_name ?>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">筛选</label>
+            <div class="col-md-10">
+              <!--
+              <label class="checkbox-inline">
+                <input type="checkbox" id="" value="option1"> 后台推荐
+              </label>
+              -->
+              <label class="checkbox-inline">
+                <input type="checkbox" <?php if(isset($_GET['is_on_sale'])): ?>checked<?php endif;?>
+                name="is_on_sale"  value="1"> 上架
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" <?php if(isset($_GET['is_new'])): ?>checked<?php endif;?>
+                name="is_new"  value="1"> 新品
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" <?php if(isset($_GET['is_hot'])): ?>checked<?php endif;?>
+                name="is_hot"  value="1"> 热销
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" <?php if(isset($_GET['is_cheap'])): ?>checked<?php endif;?>
+                name="is_cheap"  value="1"> 特价
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" <?php if(isset($_GET['lock'])): ?>checked<?php endif;?>
+                name="lock"  value="1"> 后台锁定
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label class="col-md-2 control-label">添加时间</label>
+            <div class="col-md-4">
+            <table class=" pull-left text-center">
+              <tr>
+                <td>
+                    <input type="date" class="form-control " name="goods_add_time_start" value="<?= $goods_add_time_start ?>" >
+                </td>
+                <td class="col-md-1">
+                  至
+                </td>
+                <td>
+                    <input type="date" class="form-control " name="goods_add_time_end" value="<?= $goods_add_time_end ?>" >
+                </td>
+              </tr>
+              <!--
+              <div class="pull-left text-center" style="line-height:34px;">
+                至
+              </div>
+              -->
+            </table>
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-primary" onclick="add_spec()">搜索</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hpanel">
+          <div class="panel-heading">
+            <?= $_title ?>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <!--暂时不做批量操作
+                <th><input type="checkbox"></th>
+                -->
+                <th>商品ID</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>上架</th>
+                <th>后台锁定</th>
+                <th>浏览次数</th>
+                <th>收藏次数</th>
+                <th>添加时间</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php if( !$goods_list ) :?>
+              <tr>
+                <td colspan="8" class="text-center">
+                  <h4>没有商品</h4>
+                </td>
+              </tr>
+              <?php endif; ?>
+
+              <?php foreach ($goods_list as $item): ?>
+              <tr>
+                <!--暂时不做批量操作
+                <th scope="row">
+                  <input type="checkbox">
+                </th>
+                -->
+                <td>
+                  <?= $item['goods_id'] ?>
+                </td>
+                <td title="<?= $item['origin_goods_name'] ?>"><?= $item['goods_name'] ?></td>
+                <td>¥<?= $item['goods_price'] ?></td>
+                <td>
+                  <?php if( $item['is_on_sale'] == 1 ): ?>
+                  <a href="javascript:confirmDown(<?= $item['goods_id'] ?>)">
+                  <i class="icon-ok">
+                    </i>
+                  </a>
+                  <?php else: ?>
+                  <a href="javascript:confirmUp(<?= $item['goods_id'] ?>)">
+                  <i class="icon-remove">
+                    </i>
+                  </a>
+                  <?php endif; ?>
+                </td>
+                <td>
+                  <?php if( $item['lock'] == 1 ): ?>
+                  <a href="javascript:confirmUnlock(<?= $item['goods_id'] ?>)">
+                    <i class="icon-ok">
+                    </i>
+                  </a>
+                  <?php else: ?>
+                  <a href="javascript:confirmLock(<?= $item['goods_id'] ?>)">
+                  <i class="icon-remove">
+                    </i>
+                  </a>
+                  <?php endif; ?>
+                </td>
+                <td>
+                  <?= $item['view'] ?>
+                </td>
+                <td>
+                  <?= $item['collect'] ?>
+                </td>
+                <td>
+                  <?=  $item['add_time'] ;  ?>
+                </td>
+                <td>
+                  <!-- 这个没有什么好修改,就上架跟锁定商品可以修改,在列表页面就能修改.
+                  <a href="/Goods/edit?id=<?=  $item['goods_id'] ;  ?>">修改</a>
+                  -->
+                  <a href="直接跳到 app的 那个商品详情链接">查看</a>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-right">
+      <?= $pagination ?>
+    </div>
+  </div>
+
+</div>
+</body>
+<script src="/application/views/goods/index.js"></script>
+<script>
+	function confirmUp(shop_id){
+		if(confirm("是否确认上架商品?")){
+			window.location="/Goods/up?id="+shop_id;
+		}
+	}
+	function confirmDown(shop_id){
+		if(confirm("是否确认下架架商品?")){
+			window.location="/Goods/down?id="+shop_id;
+		}
+	}
+
+</script>
+<?php include(VIEW_PATH.'common/bottom.html'); ?>
+</html>
+

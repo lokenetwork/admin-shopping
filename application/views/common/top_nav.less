@@ -1,0 +1,32 @@
+@left_bg_color:#f7f9fa;
+@nav-height:55px;
+@heavy_balck:#333;
+
+#top_nav{ height:@nav-height; width:100%;border-bottom: 1px solid #e4e5e7;}
+
+#top_nav #left_title{
+  width:180px;
+  background-color:@left_bg_color;
+}
+#top_nav #left_title a{
+  color:inherit; text-decoration:none !important;
+}
+#top_nav #left_title a:hover ,#top_nav i:hover{
+  color:@heavy_balck !important;
+}
+
+@menu_icon_border:1px solid #e4e5e7;
+#top_nav .menu_icon{
+  width:65px; color: #6a6c6f; border-left:@menu_icon_border; border-right:@menu_icon_border;  background:@left_bg_color;  cursor:pointer;
+}
+
+#top_nav .search_input input{
+  width:100%; height:@nav-height; line-height:@nav-height; text-indent:15px; border:0px; outline:none
+}
+
+/*右边按钮样式 start*/
+#top_nav tr .btn-list-td{ width:180px; background:#fff; }
+#top_nav tr .nav-tabs{font-size:24px;   }
+#top_nav tr .nav-tabs .dropdown{  }
+#top_nav tr .nav > li > a:hover,#top_nav tr .nav > li > a:focus{ text-decoration:none; background-color:#fff; border-color:#fff; color:@heavy_balck !important; }
+#top_nav tr .nav > li > a,#top_nav tr .nav > li > a:focus{ color:inherit }
