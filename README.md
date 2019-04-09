@@ -8,7 +8,7 @@ I write the all code by myself.
 
 These are some pictures of this project
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/admin-login.png)
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/login.jpg)
 
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-list.png)
 
