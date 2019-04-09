@@ -6,11 +6,11 @@
 
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/tongji.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-list.png)
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods_list.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/shop-list.png)
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/shop_list.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/word-list.png)
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/word_list.png)
 
 
 
