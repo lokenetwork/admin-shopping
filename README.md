@@ -10,32 +10,26 @@ These are some pictures of this project
 
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/login.png)
 
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/tongji.png)
+
 ![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-list.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/add-goods-attribute.png)
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/shop-list.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/goods-attribute-list.png)
+![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/word-list.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/add-goods-model-1.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/add-goods-model-2.png)
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/add-system-goods-category.png)
+# 买买提平台关项目代码
 
-![image](https://github.com/lokenetwork/admin-shopping/blob/master/project_picture/system-goods-category-list.png)
+客户端APP：https://github.com/lokenetwork/hybird_shopping_app
 
-# The whole shopping system code link
+PHP接口服务器：https://github.com/lokenetwork/shopping-php-server
 
-https://github.com/lokenetwork/hybird_shopping_app
+GO聊天服务器：https://github.com/lokenetwork/shopping-chat-server
 
-https://github.com/lokenetwork/shopkeeper_ionic_client
+通行证服务器（单点登录）：https://github.com/lokenetwork/passport-shopping-system
 
-https://github.com/lokenetwork/shopping-php-server
+商家后台：https://github.com/lokenetwork/shop-manage
 
-https://github.com/lokenetwork/shopping-chat-server
-
-https://github.com/lokenetwork/passport-shopping-system
-
-https://github.com/lokenetwork/shop-manage
-
-https://github.com/lokenetwork/admin-shopping
+总平台后台：https://github.com/lokenetwork/admin-shopping
